@@ -26,6 +26,7 @@ app.get('/', (request, response) => {
   });
 });
 
+//get all the items in the garage
 app.get('/api/v1/junk', (request, response) => {
   database('junk').select()
     .then((junk) => {
@@ -36,6 +37,7 @@ app.get('/api/v1/junk', (request, response) => {
     })
 });
 
+//get a single item
 app.get('/api/v1/junk/:id', (request, response) => {
   database('junk').where('id', id).select()
     .then((item) => {
@@ -44,6 +46,41 @@ app.get('/api/v1/junk/:id', (request, response) => {
     .catch(error => {
       console.log('That item does not exist', error);
     })
+});
+
+//add a new item
+app.post('/api/v1/junk', (request, response) => {
+  const { name, reason, cleanliness } = request.body;
+  const junk = { name, reason, cleanliness, created_at: new Date }
+
+  database('junk').insert(junk)
+    .then(() => {
+      database('junk').select()
+        .then(junk => {
+          response.status(200).json(junk)
+        })
+        .catch(error => {
+          console.log('Cannot post', error);
+        })
+    })
+});
+
+//update an item
+app.put('/api/v1/junk/:id', (request, response) => {
+  const { id } = request.params;
+  const { cleanliness } = request.body;
+  if(!cleanliness) { return response.status(422).send('did not pass valid data')}
+
+  database('junk').where('id', id).update({ cleanliness: cleanliness })
+  .then(() => {
+    database('junk').where('id', id).select()
+      .then((item) => {
+        response.status(200).json(item);
+      })
+      .catch(error => {
+        console.log('Cannot update item', error);
+      })
+  });
 })
 
 app.listen(app.get('port'), ()=>{

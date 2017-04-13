@@ -1,10 +1,8 @@
 process.env.NODE_ENV = 'test'
-const config = require('../knexfile.js')['test']
-const knex = require('knex')(config)
 
 const chai = require('chai');
 const expect = chai.expect;
-const app = require('../server.js')
+const app = require('../app.js')
 const chaiHttp = require('chai-http');
 const configuration = require('../knexfile')['test'];
 const database = require('knex')(configuration);
@@ -13,9 +11,9 @@ chai.use(chaiHttp);
 
 describe('Server', () => {
   beforeEach(function(done) {
-    knex.migrate.rollback()
+    database.migrate.rollback()
     .then(function() {
-      knex.migrate.latest()
+      database.migrate.latest()
       .then(function() {
         return database.seed.run()
         .then(function() {
@@ -24,11 +22,12 @@ describe('Server', () => {
       });
     });
   });
+
   afterEach((done)=>{
-    knex.migrate.rollback()
+    database.migrate.rollback()
     .then(()=>{
       done()
-    })
+    });
   });
 
   it('should exist', () => {
@@ -74,7 +73,43 @@ describe('Server', () => {
         expect(response).to.have.status(200)
         expect(response).to.be.json
         done();
+      });
+    });
+  });
+
+  describe('POST /api/v1/junk', () => {
+    it('should be able to post to the db', (done) => {
+      chai.request(app)
+      .post('/api/v1/junk')
+      .send({
+        id: 4,
+        name: 'tent',
+        reason: 'Going camping next year',
+        cleanliness: 'rancid',
+        created_at: new Date
       })
+      .end((error, response) => {
+        if(error) { done(error); }
+        expect(response).to.have.status(200)
+        expect(response).to.be.json
+        done();
+      });
+    });
+  });
+
+  describe('PUT /api/v1/junk/:id', () => {
+    it('should be able to update an item', (done) => {
+        chai.request(app)
+        .put('/api/v1/junk/3')
+        .send({
+          cleanliness: 'rancid'
+        })
+        .end((error, response) => {
+          if(error) { done(error); }
+          expect(response).to.have.status(200)
+          expect(response).to.be.json
+          done()
+        })
     })
   })
 });
