@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const md5 = require('md5');
 const fs = require('fs');
 const app = express();
 
@@ -18,4 +17,37 @@ app.use(function(req, res, next) {
 });
 
 app.set('port', process.env.PORT || 3000);
-app.use(express.static('public'))
+app.use(express.static('public'));
+app.locals.title = 'JerrysGarage'
+
+app.get('/', (request, response) => {
+  fs.readFile(`${__dirname}/index.html`, (err, file) => {
+    response.send(file)
+  });
+});
+
+app.get('/api/v1/junk', (request, response) => {
+  database('junk').select()
+    .then((junk) => {
+      response.status(200).json(junk);
+    })
+    .catch(error => {
+      console.log('Something is wrong with the database', error);
+    })
+});
+
+app.get('/api/v1/junk/:id', (request, response) => {
+  database('junk').where('id', id).select()
+    .then((item) => {
+      response.status(200).json(item);
+    })
+    .catch(error => {
+      console.log('That item does not exist', error);
+    })
+})
+
+app.listen(app.get('port'), ()=>{
+  console.log(`${app.locals.title} is running at ${app.get('port')}`)
+})
+
+module.exports = app

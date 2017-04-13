@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Jerry's Garage</title>
+    <link rel='stylesheet' href='styles.css'>
+  </head>
+  <body>
+    <h1 id='title'>Jerry's Garage</h1>
+    <section id="garage-closed">
+      <h3 id="open-btn">Click to Open the Garage</h3>
+    </section>
+    <section id="garage-open">
+      <aside class="junk-list">
+        <button type="button" name="sort">Sort</button>
+        <ul>
+          <li class="junk-item"></li>
+          <input type="text" placeholder="More Junk for the Garage" value="">
+          <button type="submit" name="button">Add</button>
+        </ul>
+      </aside>
+      <aside class="detail-container">
+        <h2 class="count">Total Count: </h2>
+      </aside>
+    </section>
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+    <script type='text/javascript' src='index.js'></script>
+    <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
+  </body>
+</html>
