@@ -5,7 +5,7 @@ $(document).ready(() => {
   closeGarage()
 })
 
-//opens the garage door and retrieves all items
+//click events
 $('#open-btn').on('click', () => {
   openGarage();
   showJunk();
@@ -20,9 +20,13 @@ $('#close-btn').on('click', () => {
 $('#more-junk').submit((e) => {
   e.preventDefault();
   addJunk()
-  $('#more-junk').val('')
 });
 
+$('#sort').on('click', () => {
+
+})
+
+//garage actions
 const closeGarage = () => {
   $('#garage-open').hide()
 }
@@ -32,9 +36,10 @@ const openGarage = () => {
   $('#garage-closed').hide();
 };
 
+//API calls
 const showJunk = () => {
   axios.get('/api/v1/junk')
-  .then((response) => {
+  .then(response => {
     appendJunk(response)
     countItems(response)
     sortQuality(response)
@@ -54,6 +59,12 @@ const addJunk = () => {
   });
 };
 
+const sortJunk = () => {
+  let names = []
+  
+}
+
+//helper functions
 const appendJunk = (response) => {
   $('.junk-item').empty();
   response.data.map((junk) => {
@@ -97,3 +108,7 @@ const sortQuality = (response) => {
     <p># of Rancid: ${sorted.Rancid}</p>`
   );
 };
+//
+// const sortAlpha = () => {
+//
+// }

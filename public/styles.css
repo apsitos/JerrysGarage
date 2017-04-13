@@ -1,0 +1,67 @@
+h1 {
+  font-family: 'UnifrakturCook', cursive;
+  font-size: 52px;
+  text-align: center;
+}
+
+button {
+  height: 64px;
+  width: auto;
+  background-color: #FB1;
+  font-size: 24px;
+  font-family: font-family: 'Lato', sans-serif;
+  border-radius: 25px;
+  align-items: center;
+  margin-left: 25%;
+  /*margin-right: 25%;*/
+}
+
+form {
+  font-family: 'Lato', sans-serif;
+  font-size: 36px;
+  margin-left: 25%;
+  margin-right: 25%;
+  padding: 5%;
+  background-color: #C0D3C5;
+}
+
+.submit {
+  padding-top: 4%;
+}
+
+input {
+  height: 44px;
+  font-family: 'Lato', sans-serif;
+  font-size: 36px;
+  align-items: center;
+  margin: 20px;
+}
+
+/*img {
+  height: 400px;
+  width: auto;
+}*/
+
+.garage-closed, .garage-opened {
+  position: relative;
+}
+
+#junk-list, .junk-item {
+  font-family: 'Lato', sans-serif;
+  font-size: 24px;
+  position: absolute;
+  left: 100px;
+}
+
+
+p {
+  line-height: 1;
+}
+
+.detail-container {
+  position: absolute;
+  right: 250px;
+  font-family: 'Lato', sans-serif;
+  font-size: 24px;
+  padding: 30px;
+}

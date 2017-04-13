@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title>Jerry's Garage</title>
     <link rel='stylesheet' href='styles.css'>
+    <link href="https://fonts.googleapis.com/css?family=UnifrakturCook:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   </head>
   <body>
     <h1 id='title'>Jerry's Garage</h1>
@@ -13,7 +15,7 @@
     <section id="garage-open">
       <aside class="junk-list">
         <button type="button" id="close-btn">Click to Close the Garage</button>
-        <button type="button" name="sort">Sort</button>
+        <button type="button" name="sort" id="sort">Sort</button>
           <form action="/api/v1/junk" method="post" id="more-junk">
             <div>
               <label for="name">Name:</label>
@@ -31,8 +33,8 @@
                 <option>Rancid</option>
               </select>
             </div>
-            <div class="button">
-              <button type="submit">Add More Junk</button>
+            <div class="submit">
+              <button type="submit" id="submit">Add More Junk</button>
             </div>
           </form>
         <ul class="junk-item">
