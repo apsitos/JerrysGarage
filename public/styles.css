@@ -18,7 +18,7 @@ button {
 
 form {
   font-family: 'Lato', sans-serif;
-  font-size: 36px;
+  font-size: 24px;
   margin-left: 25%;
   margin-right: 25%;
   padding: 30px;
@@ -30,9 +30,9 @@ form {
 }
 
 input {
-  height: 44px;
+  height: 34px;
   font-family: 'Lato', sans-serif;
-  font-size: 36px;
+  font-size: 24px;
   align-items: center;
   margin: 20px;
 }
