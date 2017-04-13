@@ -1,5 +1,4 @@
 
-// const jquery = require('jquery')
 
 $(document).ready(() => {
   closeGarage()
@@ -23,7 +22,11 @@ $('#more-junk').submit((e) => {
 });
 
 $('#sortup-btn').on('click', () => {
+  sortUp()
+})
 
+$('#sortdown-btn').on('click', () => {
+  sortDown()
 })
 
 //garage actions
@@ -59,9 +62,22 @@ const addJunk = () => {
   });
 };
 
-const sortJunk = () => {
-  let names = []
+const sortUp = () => {
+  axios.get('/api/v1/junk/sortup')
+  .then(response => {
+    appendJunk(response)
+    countItems(response)
+    sortQuality(response)
+  })
+}
 
+const sortDown = () => {
+  axios.get('api/v1/junk/sortdown')
+  .then(response => {
+    appendJunk(response)
+    countItems(response)
+    sortQuality(response)
+  })
 }
 
 //helper functions
@@ -108,7 +124,3 @@ const sortQuality = (response) => {
     <p># of Rancid: ${sorted.Rancid}</p>`
   );
 };
-//
-// const sortAlpha = () => {
-//
-// }
