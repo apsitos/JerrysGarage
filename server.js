@@ -37,16 +37,34 @@ app.get('/api/v1/junk', (request, response) => {
     })
 });
 
-//get a single item
+//get a single item, sort A-Z or Z-A
 app.get('/api/v1/junk/:id', (request, response) => {
   const { id } = request.params
-  database('junk').where('id', id).select()
+  if(id === 'sortup') {
+    database('junk').orderBy('name', 'asc')
+    .then(junk => {
+      response.status(200).json(junk)
+    })
+    .catch(error => {
+      console.log('Nice try', error);
+    })
+  } else if(id === 'sortdown') {
+      database('junk').orderBy('name', 'desc')
+      .then(junk => {
+        response.status(200).json(junk)
+      })
+      .catch(error => {
+        console.log('Nice try', error);
+      })
+  } else {
+    database('junk').where('id', id).select()
     .then((item) => {
       response.status(200).json(item);
     })
     .catch(error => {
       console.log('That item does not exist', error);
     })
+  }
 });
 
 //add a new item
