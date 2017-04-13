@@ -154,6 +154,7 @@ describe('Server', () => {
     });
   });
 
+//update an item
   describe('PUT /api/v1/junk/:id', () => {
     it('should be able to update an item', (done) => {
         chai.request(app)
