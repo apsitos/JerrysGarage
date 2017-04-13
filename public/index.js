@@ -15,9 +15,13 @@ $('#close-btn').on('click', () => {
   $('#garage-closed').show();
 });
 
-$('#add-btn').on('click', () => {
+$('#more-junk').submit((e) => {
+  e.preventDefault();
   addJunk()
-})
+  // const $form = $( this );
+  // const url = $(this).attr('action');
+  // const post = $.post(url, { name: $('#name').val(), reason: $('#reason').val(), cleanliness: $('#quality').val() } );
+});
 
 const closeGarage = () => {
   $('#garage-open').hide()
@@ -32,7 +36,6 @@ const showJunk = () => {
   axios.get('/api/v1/junk')
   .then((response) => {
     response.data.map((junk) => {
-      console.log(junk);
       $('.junk-item').append(
         `<li class="name">${junk.name}</li>
         <p>Why is it here? ${junk.reason}</p>
@@ -43,6 +46,8 @@ const showJunk = () => {
 };
 
 const addJunk = () => {
-  axios.post('/api/v1/junk')
-  
+  axios.post('/api/v1/junk', { name: $('#name').val(), reason: $('#reason').val(), cleanliness: $('#quality').val() })
+  .then(response => {
+    console.log(response);
+  })
 };
