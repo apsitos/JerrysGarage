@@ -72,10 +72,40 @@ describe('Server', () => {
         if(error) { done(error); }
         expect(response).to.have.status(200)
         expect(response).to.be.json
+        expect(response.body[0].name).to.equal('books')
         done();
       });
     });
   });
+
+//get a sorted list
+  describe('GET /api/v1/junk/sortup', () => {
+    it('should retrieve the list sorted A-Z', (done) => {
+      chai.request(app)
+      .get('/api/v1/junk/sortup')
+      .end((error, response) => {
+        if(error) { done(error); }
+        expect(response).to.have.status(200)
+        expect(response).to.be.json
+        expect(response.body[0].name).to.equal('bike')
+        done();
+      })
+    })
+  })
+
+  describe('GET /api/v1/junk/sortdown', () => {
+    it('should retrieve the list sorted Z-A', (done) => {
+      chai.request(app)
+      .get('/api/v1/junk/sortdown')
+      .end((error, response) => {
+        if(error) { done(error); }
+        expect(response).to.have.status(200)
+        expect(response).to.be.json
+        expect(response.body[0].name).to.equal('skis')
+        done();
+      })
+    })
+  })
 
   describe('POST /api/v1/junk', () => {
     it('should be able to post to the db', (done) => {
