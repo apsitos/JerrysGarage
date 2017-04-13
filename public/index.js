@@ -34,6 +34,7 @@ const showJunk = () => {
   .then((response) => {
     appendJunk(response)
     countItems(response)
+    sortQuality(response)
   });
 };
 
@@ -46,6 +47,7 @@ const addJunk = () => {
   .then(response => {
     appendJunk(response)
     countItems(response)
+    sortQuality(response)
   });
 };
 
@@ -64,5 +66,24 @@ const countItems = (response) => {
   let total = response.data.length;
   $('.detail-container').append(
     `<h2 class="count">Total Count: ${total}</h2>`
+  );
+};
+
+const sortQuality = (response) => {
+  const quality = response.data.map((quality) => {
+    return quality.cleanliness;
+  });
+  const sorted = quality.reduce((type, kind) => {
+    if (!type[kind]) {
+      type[kind] = 1
+    } else {
+      ++type[kind]
+    }
+    return type
+  }, {});
+  $('.detail-container').append(
+    `<p># of Sparkling Clean: ${sorted.Sparkling}</p>
+    <p># of Dusty: ${sorted.Dusty}</p>
+    <p># of Rancid: ${sorted.Rancid}</p>`
   );
 };

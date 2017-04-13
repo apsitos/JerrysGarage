@@ -5,19 +5,19 @@ exports.seed = function(knex, Promise) {
       knex('junk').insert({
         name: 'books',
         reason: 'they might be useful',
-        cleanliness: 'dusty',
+        cleanliness: 'Dusty',
         created_at: new Date
       }),
       knex('junk').insert({
         name: 'skis',
         reason: 'Joe left them',
-        cleanliness: 'dusty',
+        cleanliness: 'Dusty',
         created_at: new Date
       }),
       knex('junk').insert({
         name: 'bike',
         reason: 'blown tube',
-        cleanliness: 'sparkling',
+        cleanliness: 'Sparkling',
         created_at: new Date
       })
     ]);
