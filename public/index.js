@@ -13,6 +13,10 @@ $('#close-btn').on('click', () => {
   closeGarage()
   $('.junk-item').empty();
   $('#garage-closed').show();
+});
+
+$('#add-btn').on('click', () => {
+  addJunk()
 })
 
 const closeGarage = () => {
@@ -34,6 +38,11 @@ const showJunk = () => {
         <p>Why is it here? ${junk.reason}</p>
         <p>What is its condition? ${junk.cleanliness}</p>`
       )
-    })
-  })
-}
+    });
+  });
+};
+
+const addJunk = () => {
+  axios.post('/api/v1/junk')
+  
+};

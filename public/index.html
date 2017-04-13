@@ -15,8 +15,27 @@
         <button type="button" id="close-btn">Click to Close the Garage</button>
         <button type="button" name="sort">Sort</button>
         <ul class="junk-item">
-          <input type="text" placeholder="More Junk for the Garage" value="">
-          <button type="submit" name="button">Add</button>
+          <form action="/api/v1/junk" method="post">
+            <div>
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name">
+            </div>
+            <div>
+              <label for="reason">Reason:</label>
+              <input type="reason" id="reason" name="reason">
+            </div>
+            <div>
+              <label for="quality">Quality:</label>
+              <select id="quality" name="cleanliness">
+                <option>Sparkling</option>
+                <option>Dusty</option>
+                <option>Rancid</option>
+              </select>
+            </div>
+            <div class="button">
+              <button type="submit">Add More Junk</button>
+            </div>
+          </form>
         </ul>
       </aside>
       <aside class="detail-container">

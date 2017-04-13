@@ -39,6 +39,7 @@ app.get('/api/v1/junk', (request, response) => {
 
 //get a single item
 app.get('/api/v1/junk/:id', (request, response) => {
+  const { id } = request.params
   database('junk').where('id', id).select()
     .then((item) => {
       response.status(200).json(item);
