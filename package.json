@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Mod 4 Final Assessment",
   "main": "index.js",
-  "scripts": {"start" : "webpack-dev-server",
-  "test": "node_modules/.bin/mocha ./tests/**.js || true"
+  "scripts": {
+    "start": "node server.js",
+    "test": "node_modules/.bin/mocha ./tests/**.js || true"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,11 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
-    "mocha": "^3.2.0"
+    "jQuery": "^1.7.4",
+    "jsdom": "^9.12.0",
+    "mocha": "^3.2.0",
+    "mocha-jsdom": "^1.1.0",
+    "webpack": "^2.3.3",
+    "webpack-dev-server": "^2.4.2"
   }
 }

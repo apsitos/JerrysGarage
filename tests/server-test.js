@@ -2,7 +2,7 @@ process.env.NODE_ENV = 'test'
 
 const chai = require('chai');
 const expect = chai.expect;
-const app = require('../app.js')
+const app = require('../server.js')
 const chaiHttp = require('chai-http');
 const configuration = require('../knexfile')['test'];
 const database = require('knex')(configuration);
@@ -56,8 +56,8 @@ describe('Server', () => {
         if(error) { done(error); }
         expect(response).to.have.status(200)
         expect(response).to.be.json
-        expect(response).to.be.a('array')
-        expect(response).to.have.length(3)
+        expect(response.body).to.be.a('array')
+        expect(response.body).to.have.length(3)
         done();
       });
     });
