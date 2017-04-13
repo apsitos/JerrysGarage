@@ -1,9 +1,11 @@
 
+// const jquery = require('jquery')
+
 $(document).ready(() => {
   closeGarage()
 })
 
-//opens the garage door and retrieves all items
+//click events
 $('#open-btn').on('click', () => {
   openGarage();
   showJunk();
@@ -20,6 +22,11 @@ $('#more-junk').submit((e) => {
   addJunk()
 });
 
+$('#sort').on('click', () => {
+
+})
+
+//garage actions
 const closeGarage = () => {
   $('#garage-open').hide()
 }
@@ -29,9 +36,10 @@ const openGarage = () => {
   $('#garage-closed').hide();
 };
 
+//API calls
 const showJunk = () => {
   axios.get('/api/v1/junk')
-  .then((response) => {
+  .then(response => {
     appendJunk(response)
     countItems(response)
     sortQuality(response)
@@ -51,6 +59,12 @@ const addJunk = () => {
   });
 };
 
+const sortJunk = () => {
+  let names = []
+  
+}
+
+//helper functions
 const appendJunk = (response) => {
   $('.junk-item').empty();
   response.data.map((junk) => {
@@ -60,7 +74,13 @@ const appendJunk = (response) => {
       <p>What is its condition? ${junk.cleanliness}</p>`
     )
   });
+  clearFields()
 };
+
+const clearFields = () => {
+  $('#name').val('');
+  $('#reason').val('');
+}
 
 const countItems = (response) => {
   let total = response.data.length;
@@ -88,3 +108,7 @@ const sortQuality = (response) => {
     <p># of Rancid: ${sorted.Rancid}</p>`
   );
 };
+//
+// const sortAlpha = () => {
+//
+// }
