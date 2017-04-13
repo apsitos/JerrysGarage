@@ -1,13 +1,8 @@
 process.env.NODE_ENV = 'test'
-const config = require('../knexfile.js')['test']
-const knex = require('knex')(config)
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
 
 const chai = require('chai');
 const expect = chai.expect;
-const server = require('../server.js')
+const app = require('../app.js')
 const chaiHttp = require('chai-http');
 const configuration = require('../knexfile')['test'];
 const database = require('knex')(configuration);
@@ -36,12 +31,12 @@ describe('Server', () => {
   });
 
   it('should exist', () => {
-    expect(server).to.exist
+    expect(app).to.exist
   });
 
   describe('GET /', ()=>{
     it('should return html successfully',(done)=>{
-      chai.request(server)
+      chai.request(app)
       .get('/')
       .end((error, response)=>{
         if(error) { done(error); }
@@ -55,7 +50,7 @@ describe('Server', () => {
 //get all the garage items
   describe('GET /api/v1/junk', () => {
     it('should retrieve the junk', (done) => {
-      chai.request(server)
+      chai.request(app)
       .get('/api/v1/junk')
       .end((error, response) => {
         if(error) { done(error); }
@@ -71,7 +66,7 @@ describe('Server', () => {
 //get one item from the garage
   describe('GET /api/v1/junk/:id', () => {
     it('should retrieve one item from the garage', (done) => {
-      chai.request(server)
+      chai.request(app)
       .get('/api/v1/junk/1')
       .end((error, response) => {
         if(error) { done(error); }
@@ -84,7 +79,7 @@ describe('Server', () => {
 
   describe('POST /api/v1/junk', () => {
     it('should be able to post to the db', (done) => {
-      chai.request(server)
+      chai.request(app)
       .post('/api/v1/junk')
       .send({
         id: 4,
@@ -104,7 +99,7 @@ describe('Server', () => {
 
   describe('PUT /api/v1/junk/:id', () => {
     it('should be able to update an item', (done) => {
-        chai.request(server)
+        chai.request(app)
         .put('/api/v1/junk/3')
         .send({
           cleanliness: 'rancid'
