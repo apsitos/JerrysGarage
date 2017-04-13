@@ -22,7 +22,7 @@ $('#more-junk').submit((e) => {
   addJunk()
 });
 
-$('#sort').on('click', () => {
+$('#sortup-btn').on('click', () => {
 
 })
 
@@ -61,7 +61,7 @@ const addJunk = () => {
 
 const sortJunk = () => {
   let names = []
-  
+
 }
 
 //helper functions
