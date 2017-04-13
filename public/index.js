@@ -18,9 +18,6 @@ $('#close-btn').on('click', () => {
 $('#more-junk').submit((e) => {
   e.preventDefault();
   addJunk()
-  // const $form = $( this );
-  // const url = $(this).attr('action');
-  // const post = $.post(url, { name: $('#name').val(), reason: $('#reason').val(), cleanliness: $('#quality').val() } );
 });
 
 const closeGarage = () => {
@@ -35,19 +32,37 @@ const openGarage = () => {
 const showJunk = () => {
   axios.get('/api/v1/junk')
   .then((response) => {
-    response.data.map((junk) => {
-      $('.junk-item').append(
-        `<li class="name">${junk.name}</li>
-        <p>Why is it here? ${junk.reason}</p>
-        <p>What is its condition? ${junk.cleanliness}</p>`
-      )
-    });
+    appendJunk(response)
+    countItems(response)
   });
 };
 
 const addJunk = () => {
-  axios.post('/api/v1/junk', { name: $('#name').val(), reason: $('#reason').val(), cleanliness: $('#quality').val() })
-  .then(response => {
-    console.log(response);
+  axios.post('/api/v1/junk', {
+    name: $('#name').val(),
+    reason: $('#reason').val(),
+    cleanliness: $('#quality').val()
   })
+  .then(response => {
+    appendJunk(response)
+    countItems(response)
+  });
+};
+
+const appendJunk = (response) => {
+  $('.junk-item').empty();
+  response.data.map((junk) => {
+    $('.junk-item').append(
+      `<li class="name">${junk.name}</li>
+      <p>Why is it here? ${junk.reason}</p>
+      <p>What is its condition? ${junk.cleanliness}</p>`
+    )
+  });
+};
+
+const countItems = (response) => {
+  let total = response.data.length;
+  $('.detail-container').append(
+    `<h2 class="count">Total Count: ${total}</h2>`
+  );
 };
