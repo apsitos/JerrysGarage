@@ -5,12 +5,13 @@ require('babel-core/register')({
 const chai = require('chai');
 const expect = chai.expect;
 const assert = chai.assert;
-const $ = require('jquery');
+const jquery = require('jquery');
 const Garage = require('../public/index.js');
-const jsdom = require('mocha-jsdom')
-// global.document = require('jsdom').jsdom('<html></html>');
-// global.window = document.defaultView;
-// global.$ = require('jquery')(window);
+const jsdom = require("jsdom").jsdom;
+const doc = jsdom();
+const window = doc.defaultView;
+$ = require('jquery')(window);
+
 
 describe ('Garage', function() {
 

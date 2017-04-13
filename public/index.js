@@ -1,4 +1,6 @@
 
+// const jquery = require('jquery')
+
 $(document).ready(() => {
   closeGarage()
 })
@@ -18,6 +20,7 @@ $('#close-btn').on('click', () => {
 $('#more-junk').submit((e) => {
   e.preventDefault();
   addJunk()
+  $('#more-junk').val('')
 });
 
 const closeGarage = () => {
@@ -60,7 +63,13 @@ const appendJunk = (response) => {
       <p>What is its condition? ${junk.cleanliness}</p>`
     )
   });
+  clearFields()
 };
+
+const clearFields = () => {
+  $('#name').val('');
+  $('#reason').val('');
+}
 
 const countItems = (response) => {
   let total = response.data.length;
