@@ -20,6 +20,6 @@ exports.seed = function(knex, Promise) {
         cleanliness: 'sparkling',
         created_at: new Date
       })
-    ])
-  })
-}
+    ]);
+  });
+};
