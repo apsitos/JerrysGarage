@@ -7,10 +7,25 @@
   </head>
   <body>
     <h1 id='title'>Jerry's Garage</h1>
-    <button type="button" name="open">Click to Open the Garage</button>
+    <section id="garage-closed">
+      <button type="button" name="open">Click to Open the Garage</button>
+    </section>
+    <section id="garage-open">
+      <aside class="junk-list">
+        <button type="button" name="sort">Sort</button>
+        <ul>
+          <li class="junk-item"></li>
+          <input type="text" placeholder="More Junk for the Garage" value="">
+          <button type="submit" name="button">Add</button>
+        </ul>
+      </aside>
+      <aside class="detail-container">
+        <h2 class="count">Total Count: </h2>
+      </aside>
+    </section>
 
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
-<script type='text/javascript' src='index.js'></script>
-<script src='https://unpkg.com/axios/dist/axios.min.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+    <script type='text/javascript' src='index.js'></script>
+    <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
   </body>
 </html>
