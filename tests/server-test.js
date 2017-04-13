@@ -72,11 +72,53 @@ describe('Server', () => {
         if(error) { done(error); }
         expect(response).to.have.status(200)
         expect(response).to.be.json
+        expect(response.body[0].name).to.equal('books')
         done();
       });
     });
   });
 
+  describe('GET /api/v1/junk/:id', () => {
+    it('should return an error if the item is not in the garage', (done) => {
+      chai.request(app)
+      .get('/api/v1/junk/5')
+      .end((error, response) => {
+        expect(response).to.throw
+        done()
+      })
+    })
+  })
+
+//get a sorted list
+  describe('GET /api/v1/junk/sortup', () => {
+    it('should retrieve the list sorted A-Z', (done) => {
+      chai.request(app)
+      .get('/api/v1/junk/sortup')
+      .end((error, response) => {
+        if(error) { done(error); }
+        expect(response).to.have.status(200)
+        expect(response).to.be.json
+        expect(response.body[0].name).to.equal('bike')
+        done();
+      });
+    });
+  });
+
+  describe('GET /api/v1/junk/sortdown', () => {
+    it('should retrieve the list sorted Z-A', (done) => {
+      chai.request(app)
+      .get('/api/v1/junk/sortdown')
+      .end((error, response) => {
+        if(error) { done(error); }
+        expect(response).to.have.status(200)
+        expect(response).to.be.json
+        expect(response.body[0].name).to.equal('skis')
+        done();
+      });
+    });
+  });
+
+//add an item to the db
   describe('POST /api/v1/junk', () => {
     it('should be able to post to the db', (done) => {
       chai.request(app)
@@ -92,7 +134,22 @@ describe('Server', () => {
         if(error) { done(error); }
         expect(response).to.have.status(200)
         expect(response).to.be.json
+        expect(response.body).to.have.length(4)
         done();
+      });
+    });
+    it('should return an error if it is missing info', (done) => {
+      chai.request(app)
+      .post('/api/v1/junk')
+      .send({
+        id: 4,
+        name: 'tent',
+        reason: 'Going camping next year'
+      })
+      .end((error, response) => {
+        if(error) { done(error); }
+        expect(response).to.throw
+        done()
       });
     });
   });
