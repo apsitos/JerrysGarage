@@ -1,0 +1,32 @@
+{
+  "name": "jerrys_garage",
+  "version": "1.0.0",
+  "description": "Mod 4 Final Assessment",
+  "main": "index.js",
+  "scripts": {"start" : "webpack-dev-server",
+  "test": "node_modules/.bin/mocha ./tests/**.js || true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apsitos/JerrysGarage.git"
+  },
+  "author": "Annastasia Psitos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/apsitos/JerrysGarage/issues"
+  },
+  "homepage": "https://github.com/apsitos/JerrysGarage#readme",
+  "dependencies": {
+    "axios": "^0.15.3",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "knex": "^0.12.8",
+    "md5": "^2.2.1",
+    "pg": "^6.1.4"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.2.0"
+  }
+}
