@@ -19,8 +19,7 @@ button {
 form {
   font-family: 'Lato', sans-serif;
   font-size: 24px;
-  margin-left: 25%;
-  margin-right: 25%;
+  margin: 25%;
   padding: 30px;
   background-color: #C0D3C5;
 }
