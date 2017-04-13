@@ -64,6 +64,7 @@ const appendJunk = (response) => {
 
 const countItems = (response) => {
   let total = response.data.length;
+  $('.detail-container').empty();
   $('.detail-container').append(
     `<h2 class="count">Total Count: ${total}</h2>`
   );
