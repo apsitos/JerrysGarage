@@ -19,3 +19,9 @@ app.use(function(req, res, next) {
 
 app.set('port', process.env.PORT || 3000);
 app.use(express.static('public'))
+
+app.get('/', (request, response) => {
+  fs.readFile(`${__dirname}/index.html`, (err, file) => {
+    response.send(file)
+  });
+});
