@@ -9,6 +9,12 @@ $('#open-btn').on('click', () => {
   showJunk();
 });
 
+$('#close-btn').on('click', () => {
+  closeGarage()
+  $('.junk-item').empty();
+  $('#garage-closed').show();
+})
+
 const closeGarage = () => {
   $('#garage-open').hide()
 }
@@ -24,7 +30,9 @@ const showJunk = () => {
     response.data.map((junk) => {
       console.log(junk);
       $('.junk-item').append(
-        `<p class="name">${junk.name}</p>`
+        `<li class="name">${junk.name}</li>
+        <p>Why is it here? ${junk.reason}</p>
+        <p>What is its condition? ${junk.cleanliness}</p>`
       )
     })
   })
