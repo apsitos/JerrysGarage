@@ -19,13 +19,19 @@
 //     expect(garage).to.exist
 //   });
 //
-//   it.skip('should start closed', () => {
+//   it('should start closed', () => {
 //     expect('#open-btn').to.have.length(1)
 //   });
 //
-//   it.skip('should have a list of items in the garage', () => {
+//   it('should have a list of items in the garage', () => {
 //     garage.openGarage();
 //     garage.showJunk();
 //     expect('li').to.have.length(3)
+//   });
+// 
+//   it('should clear fields after adding to the list', () => {
+//     let { name: 'bins', reason: 'moving', cleanliness: 'Dusty'} = junk
+//     garage.appendJunk()
+//     expect(junk.name).to.equal('')
 //   });
 // });

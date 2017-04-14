@@ -76,18 +76,16 @@ describe('Server', () => {
         done();
       });
     });
-  });
-
-  describe('GET /api/v1/junk/:id', () => {
+    
     it('should return an error if the item is not in the garage', (done) => {
       chai.request(app)
       .get('/api/v1/junk/5')
       .end((error, response) => {
         expect(response).to.throw
         done()
-      })
-    })
-  })
+      });
+    });
+  });
 
 //get a sorted list
   describe('GET /api/v1/junk/sortup', () => {

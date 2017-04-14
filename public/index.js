@@ -1,5 +1,4 @@
 
-
 $(document).ready(() => {
   closeGarage()
 })
@@ -23,16 +22,20 @@ $('#more-junk').submit((e) => {
 
 $('#sortup-btn').on('click', () => {
   sortUp()
-})
+});
 
 $('#sortdown-btn').on('click', () => {
   sortDown()
-})
+});
+
+$('.junk-item').on('click', (e) => {
+  seeOneItem(e)
+});
 
 //garage actions
 const closeGarage = () => {
   $('#garage-open').hide()
-}
+};
 
 const openGarage = () => {
   $('#garage-open').show();
@@ -68,8 +71,8 @@ const sortUp = () => {
     appendJunk(response)
     countItems(response)
     sortQuality(response)
-  })
-}
+  });
+};
 
 const sortDown = () => {
   axios.get('api/v1/junk/sortdown')
@@ -77,17 +80,19 @@ const sortDown = () => {
     appendJunk(response)
     countItems(response)
     sortQuality(response)
-  })
-}
+  });
+};
 
 //helper functions
 const appendJunk = (response) => {
   $('.junk-item').empty();
   response.data.map((junk) => {
     $('.junk-item').append(
-      `<li class="name">${junk.name}</li>
-      <p>Why is it here? ${junk.reason}</p>
-      <p>What is its condition? ${junk.cleanliness}</p>`
+      `<div id=${junk.id}>
+        <li>${junk.name}</li>
+        <p>Why is it here? ${junk.reason}</p>
+        <p>What is its condition? ${junk.cleanliness}</p>
+      </div>`
     )
   });
   clearFields()
@@ -124,3 +129,10 @@ const sortQuality = (response) => {
     <p># of Rancid: ${sorted.Rancid}</p>`
   );
 };
+
+const seeOneItem = (e) => {
+  $('#single-item').empty();
+  $('.detail-container').append(
+    `<p id='single-item'>${e.target.innerText}</p>`
+  )
+}
